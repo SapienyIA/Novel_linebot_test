@@ -1,0 +1,11 @@
+install package flask ### pip install flask
+install package linebot_api ### pip install linebot
+install package beautiful4 ### pip install bs4
+install ngrok  https://ngrok.com/download
+create line developes accout https://developers.line.biz/
+& create new channel
+set your user_id,channel_secret,channel_token at account
+edit your channel_bot at https://manager.line.biz/
+start ngrok ### ngrok http 5000
+edit Webhook URL at https://developers.line.biz/
+start main.py ### python main.py
