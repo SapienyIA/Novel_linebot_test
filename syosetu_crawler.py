@@ -5,7 +5,7 @@ import os
 
 ssl._create_default_https_context = ssl._create_unverified_context
 headers = {'User-Agent': 'Mozilla/5.0'}
-filename = "url"
+filename = "./url"
 
 def check_update():
     cu = read_file()
@@ -25,7 +25,7 @@ def check_update():
         else:
             msg +="有更新\n"+str(title)+"\n最新章是:"+update[url][1]+"\n連結:"+url[0:25]+str(chapter[-1].a["href"])
             cu[url] = update[url]
-            with open(filename,'w') as file:
+            with open(filename,'w',encoding='UTF-8') as file:
                 for k,v in cu.items():
                     file.write(str(k)+' '+str(v[0])+' '+str(v[1])+'\n')
         msg += '\n\n'
@@ -51,7 +51,7 @@ def check_update2():
             msg ="有更新\n"+str(title)+"\n最新章是:"+update[url][1]+"\n連結:"+url[0:25]+str(chapter[-1].a["href"])
             print(msg)
             cu[url] = update[url]
-            with open(filename,'w') as file:
+            with open(filename,'w',encoding='UTF-8') as file:
                 for k,v in cu.items():
                     file.write(str(k)+' '+str(v[0])+' '+str(v[1])+'\n')
             send_message(msg)
@@ -64,7 +64,7 @@ def make_book(url):
     for ch in chapter:
         u = url[0:25] + str(ch.a["href"])
         print("處理中:"+u)
-        with open(name,'a') as file:
+        with open(name,'a',encoding='UTF-8') as file:
             file.write(return_chapter(u))
     print("完成")
 
@@ -88,7 +88,7 @@ def nformat(title):
 
 def read_file():
     rb = {}
-    with open("./url", 'r') as file:
+    with open("./url", 'r',encoding='UTF-8') as file:
         for line in file.readlines():
             line = line.strip()
             key =line.split(' ')[0]
@@ -117,7 +117,7 @@ def book_add(name):
                 chapter = html.find_all("dl",class_="novel_sublist2")
                 title = html.find("title").text
                 name+= ' '+   nformat(title) +' '+ nformat(chapter[-1].a.text) +'\n'
-                with open("./url",'a') as file:
+                with open("./url",'a',encoding='UTF-8') as file:
                     file.write(name)
             else:
                 msg = "已在清單內"
@@ -133,14 +133,14 @@ def book_remove(name):
     for k,v in url.items():
         if name == str(v[0]):
             del url[k]
-            with open("./url",'w') as file:
+            with open("./url",'w',encoding='UTF-8') as file:
                 for k,v in url.items():
                     file.write(str(k)+' '+str(v[0])+' '+str(v[1])+'\n')
             msg = "已移除"
             return msg
     if name in url.keys():
         del url[name]
-        with open("./url",'w') as file:
+        with open("./url",'w',encoding='UTF-8') as file:
             for k,v in url.items():
                 file.write(str(k)+' '+str(v[0])+' '+str(v[1])+'\n')
         msg = "已移除"
