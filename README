@@ -1,6 +1,7 @@
+install package schedule ### pip install schedule
 install package flask ### pip install flask
-install package linebot_api ### pip install linebot
-install package beautiful4 ### pip install bs4
+install package linebot_api ### pip install linebot_sdk
+install package beautifulsoup4 ### pip install beautifualsoup4
 install ngrok  https://ngrok.com/download
 create line developes accout https://developers.line.biz/
 & create new channel
